@@ -1,4 +1,6 @@
 make run :
 	uvicorn main:app --reload
+make test:
+	pytest
 
-PHONY: run
+PHONY: run test
