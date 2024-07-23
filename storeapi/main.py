@@ -1,7 +1,10 @@
-from fastapi import FastAPI
 from contextlib import asynccontextmanager
-from storeapi.routers.post import router as posts_router
-from storeapi.database import database
+
+from fastapi import FastAPI
+
+from database import database
+from routers.post import router as post_router
+
 
 
 @asynccontextmanager
@@ -10,11 +13,7 @@ async def lifespan(app: FastAPI):
     yield
     await database.disconnect()
 
-
 app = FastAPI(lifespan=lifespan)
-app.include_router(posts_router, tags=["posts"])
 
 
-@app.get("/")
-async def root():
-    return {"message": "Hello, World"}
+app.include_router(post_router)
