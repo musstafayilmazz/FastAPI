@@ -1,6 +1,10 @@
 make run :
-	uvicorn main:app --reload
+	cd ~/Desktop/SelfLearning/FastAPI/ && uvicorn storeapi.main:app --reload
 make test:
-	pytest
+	cd ~/Desktop/SelfLearning/FastAPI/storeapi/ && pytest
+make lib:
+	cd ~/Desktop/SelfLearning/FastAPI/ && pip install -r requirements.txt
+make docker:
+	cd ~/Desktop/SelfLearning/FastAPI && docker-compose up -d
 
-PHONY: run test
+PHONY: run test lib
